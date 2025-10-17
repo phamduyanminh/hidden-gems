@@ -9,8 +9,6 @@
 
 ## Project Setup - Run the following Commands in Order
 
-## Project Setup - Run the following Commands in Order
-
 1. `npm install`
    - Installs all dependencies listed in package.json
 
@@ -31,7 +29,7 @@
    }
    ```
 
-- ESLint Error: "A `require()` style import is forbidden -> Ensure all imports use ES module syntax (`import` instead of `require()`)
+- ESLint Error: "A `require()` style import is forbidden" -> Ensure all imports use ES module syntax (`import` instead of `require()`)
 
 ## Command lines for this project
 
