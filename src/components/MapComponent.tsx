@@ -1,6 +1,6 @@
 // src/components/MapComponent.tsx
 import React, { useEffect, useRef } from "react";
-import mapboxgl, { GeoJSONSource } from "mapbox-gl";
+import mapboxgl, { GeoJSONSource, GeolocateControl } from "mapbox-gl";
 
 interface MovingObject {
   id: number;
@@ -24,14 +24,32 @@ const MapComponent: React.FC = () => {
         center: [-74.0060152, 40.7127281],
         zoom: 15,
         maxZoom: 20,
-        pitch: 60,
+        pitch: 0,
         bearing: 0,
       });
 
       // Add zoom controls
-      map.addControl(new mapboxgl.NavigationControl(), "top-left");
+      map.addControl(new mapboxgl.NavigationControl(
+        {
+          showCompass: false,
+          showZoom: true,
+        }
+      ), "top-right");
 
+      //Add user location
+      map.addControl(new mapboxgl.GeolocateControl(
+        {
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true,
+            showUserHeading: true
+        }
+      ), "top-right");
+      
+      
       // Add your custom markers and lines here
+      
 
       // Clean up on unmount
       return () => map.remove();
@@ -41,7 +59,8 @@ const MapComponent: React.FC = () => {
   return (
     <div
       ref={mapContainer}
-      style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
+      style={{ position: "absolute", top: 0, bottom: 0, width: "100%"}}
+      className="map-container"
     />
   );
 };
